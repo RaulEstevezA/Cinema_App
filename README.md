@@ -1,1 +1,3 @@
-# Cinema_App
+# cinema_app
+
+A new Flutter project.

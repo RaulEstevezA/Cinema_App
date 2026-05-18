@@ -1,5 +1,3 @@
-
-
 import 'package:cinema_app/config/constants/enviroment.dart';
 import 'package:cinema_app/domain/datasources/movies_datasources.dart';
 import 'package:cinema_app/domain/entities/movies.dart';
@@ -29,8 +27,6 @@ class MoviedbDatasource extends MoviesDataSources {
     .map(
       (moviedb) => MovieMapper.movieDBToEntity(moviedb)
       ).toList();
-
-    
 
     return movies;
   }

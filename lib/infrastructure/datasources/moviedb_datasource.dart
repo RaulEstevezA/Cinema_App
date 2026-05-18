@@ -6,29 +6,30 @@ import 'package:cinema_app/infrastructure/models/moviedb/moviedb_response.dart';
 import 'package:dio/dio.dart';
 
 class MoviedbDatasource extends MoviesDataSources {
-  
   final dio = Dio(BaseOptions(
-      baseUrl: 'https://api.themoviedb.org/3',
-      queryParameters: {
-        'api_key': Enviroment.theMovideDbKey,
-        'language': 'es-ES'
-      }
+    baseUrl: 'https://api.themoviedb.org/3',
+    queryParameters: {
+      'api_key': Enviroment.theMovideDbKey,
+      'language': 'es-ES',
+    },
   ));
-  
+
   @override
   Future<List<Movie>> getNowPlaying({int page = 1}) async {
+    final response = await dio.get(
+      '/movie/now_playing',
+      queryParameters: {
+        'page': page,
+      },
+    );
 
-    final response = await dio.get('/movie/now:playing');
-    
     final movieDbResponse = MovieDbResponse.fromJson(response.data);
 
     final List<Movie> movies = movieDbResponse.results
-    .where((moviedb) => moviedb.posterPath != 'no-poster') // filtrado para que no aparezcan las que no tienen poster.
-    .map(
-      (moviedb) => MovieMapper.movieDBToEntity(moviedb)
-      ).toList();
+        .where((moviedb) => moviedb.posterPath.isNotEmpty)
+        .map((moviedb) => MovieMapper.movieDBToEntity(moviedb))
+        .toList();
 
     return movies;
   }
-
 }

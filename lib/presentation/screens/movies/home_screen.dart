@@ -37,7 +37,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    final nowPlayingMovies = ref.watch(moviesSlideshowProvider);
 
     if (nowPlayingMovies.isEmpty) return CircularProgressIndicator();
 

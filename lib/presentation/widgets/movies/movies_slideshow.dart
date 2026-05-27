@@ -46,7 +46,21 @@ class _Slide extends StatelessWidget {
       padding: const EdgeInsetsGeometry.only(bottom: 30),
       child: DecoratedBox(
         decoration: decoration,
-        child: Placeholder()
+        child: ClipRRect(
+          borderRadius: BorderRadiusGeometry.circular(20),
+          child: Image.network(
+            movie.backdropPath,
+            fit: BoxFit.cover,
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress != null) {
+                return const DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.black12)
+                );
+              }
+              return child;
+            },
+          )
+        )
       ),
     );
   }

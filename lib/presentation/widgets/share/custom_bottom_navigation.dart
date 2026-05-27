@@ -5,7 +5,9 @@ class CustomBottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(items: const [
+    return BottomNavigationBar(
+      elevation: 0,
+      items: const [
       BottomNavigationBarItem(
         icon: Icon(Icons.home_max),
         label: 'Inicio'

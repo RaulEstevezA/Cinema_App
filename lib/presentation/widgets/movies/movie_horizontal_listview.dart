@@ -8,7 +8,7 @@ class MovieHorizontalListview extends StatefulWidget {
   final List<Movie> movies;
   final String? title;
   final String? subTitle;
-  final VoidCallback? loadNextPage;
+  final Future<void> Function()? loadNextPage;
 
   const MovieHorizontalListview({super.key, this.title, this.subTitle, required this.movies, this.loadNextPage});
 
@@ -21,18 +21,23 @@ class MovieHorizontalListview extends StatefulWidget {
 class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
 
   final scrollController = ScrollController();
+  bool isLoadingNextPage = false;
 
   @override
   void initState() {
     super.initState();
 
-    scrollController.addListener(() {
+    scrollController.addListener(() async {
       if(widget.loadNextPage == null) return;
+      if(isLoadingNextPage) return;
 
       if(scrollController.position.pixels +200 >= scrollController.position.maxScrollExtent) {
-        print('Load next movies');
-
-        widget.loadNextPage!();
+        isLoadingNextPage = true;
+        try {
+          await widget.loadNextPage!();
+        } finally {
+          isLoadingNextPage = false;
+        }
       }
       
 
@@ -119,9 +124,11 @@ class _Slide extends StatelessWidget {
           //* Titulo
           SizedBox(
             width: 150,
+            height: 40,
             child: Text(
               movie.title,
               maxLines: 2,
+              overflow: TextOverflow.ellipsis,
               style: textStyle.titleSmall,
             ),
           ),

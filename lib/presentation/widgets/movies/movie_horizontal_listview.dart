@@ -50,6 +50,9 @@ class _Slide extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+
+          //* Imagen
+
           SizedBox(
             width: 150,
             child: ClipRRect(
@@ -71,7 +74,13 @@ class _Slide extends StatelessWidget {
                 },
               )
             ),
-          )
+          ),
+
+          const SizedBox(height: 5),
+
+          //* Titulo
+
+
         ],
       ),
     );

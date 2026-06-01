@@ -46,7 +46,12 @@ class _Slide extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8),
-      child: Placeholder(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Placeholder()
+        ],
+      ),
     );
   }
 }

@@ -53,6 +53,9 @@ class _Slide extends StatelessWidget {
             width: 150,
             child: ClipRRect(
               borderRadius: BorderRadiusGeometry.circular(20),
+              child: Image.network(
+                movie.posterPath,
+              )
             ),
           )
         ],

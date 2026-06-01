@@ -42,21 +42,46 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
     if (slideShoeMovies.isEmpty) return CircularProgressIndicator();
 
-    return Column(
-      children: [
-        const CustomAppbar(),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const CustomAppbar(),
+      
+          MoviesSlideshow(movies: slideShoeMovies),
+      
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'En Cines',
+            subTitle: "lunes 20",
+            loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+          ),
 
-        MoviesSlideshow(movies: slideShoeMovies),
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'En Cines',
+            subTitle: "lunes 20",
+            loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+          ),
 
-        MovieHorizontalListview(
-          movies: nowPlayingMovies,
-          title: 'En Cines',
-          subTitle: "lunes 20",
-          loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
-        )
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'En Cines',
+            subTitle: "lunes 20",
+            loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+          ),
 
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'En Cines',
+            subTitle: "lunes 20",
+            loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+          ),
 
-      ],
+          const SizedBox(height: 20),
+      
+      
+        ],
+      ),
     );
   }
 }

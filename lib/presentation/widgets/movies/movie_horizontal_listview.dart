@@ -57,11 +57,11 @@ class _Slide extends StatelessWidget {
                 movie.posterPath,
                 width: 150,
                 loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress != null) {
-                    return const CircularProgressIndicator(strokeWidth: 2);
-                  }
+                  // if (loadingProgress != null) {
+                    return const Center(child: CircularProgressIndicator(strokeWidth: 2)) ;
+                  // }
 
-                  return child;
+                  // return child;
                 },
               )
             ),

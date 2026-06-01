@@ -55,6 +55,14 @@ class _Slide extends StatelessWidget {
               borderRadius: BorderRadiusGeometry.circular(20),
               child: Image.network(
                 movie.posterPath,
+                width: 150,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress != null) {
+                    return const CircularProgressIndicator(strokeWidth: 2);
+                  }
+
+                  return child;
+                },
               )
             ),
           )

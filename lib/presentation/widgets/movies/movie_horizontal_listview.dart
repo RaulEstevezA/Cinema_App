@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cinema_app/domain/entities/movies.dart';
 import 'package:flutter/material.dart';
 
@@ -55,15 +56,17 @@ class _Slide extends StatelessWidget {
               borderRadius: BorderRadiusGeometry.circular(20),
               child: Image.network(
                 movie.posterPath,
+                fit: BoxFit.cover,
                 width: 150,
                 loadingBuilder: (context, child, loadingProgress) {
-                  // if (loadingProgress != null) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: const Center(child: CircularProgressIndicator(strokeWidth: 2)),
+                  if (loadingProgress != null) {
+                    return const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
                     ) ;
-                  // }
-
+                  }
+                  
+                  return FadeInRight(child: child);
                   // return child;
                 },
               )

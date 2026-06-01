@@ -60,7 +60,7 @@ class _Slide extends StatelessWidget {
           SizedBox(
             width: 150,
             child: ClipRRect(
-              borderRadius: BorderRadiusGeometry.circular(20),
+              borderRadius: BorderRadius.circular(20),
               child: Image.network(
                 movie.posterPath,
                 fit: BoxFit.cover,
@@ -102,7 +102,7 @@ class _Slide extends StatelessWidget {
                 Text('${ movie.voteAverage }', style: textStyle.bodyMedium?.copyWith(color: Colors.yellow.shade800)),
                 // const SizedBox(width: 3),
                 const Spacer(),
-                Text(HumanFormats.number(movie.popularity), style: textStyle.bodySmall)
+                Text(HumanFormats.number(movie.voteCount.toDouble()), style: textStyle.bodySmall)
                 // Text('${ movie.popularity }', style: textStyle.bodySmall)
               ],
             ),

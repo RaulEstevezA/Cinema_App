@@ -44,7 +44,10 @@ class _Slide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Placeholder();
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 8),
+      child: Placeholder(),
+    );
   }
 }
 

@@ -49,7 +49,12 @@ class _Slide extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Placeholder()
+          SizedBox(
+            width: 150,
+            child: ClipRRect(
+              borderRadius: BorderRadiusGeometry.circular(20),
+            ),
+          )
         ],
       ),
     );

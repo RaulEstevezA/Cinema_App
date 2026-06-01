@@ -73,7 +73,7 @@ class _Slide extends StatelessWidget {
                     ) ;
                   }
                   
-                  return FadeInRight(child: child);
+                  return FadeIn(child: child);
                   // return child;
                 },
               )

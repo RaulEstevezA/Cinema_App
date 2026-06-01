@@ -45,6 +45,9 @@ class _Slide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final textStyle = Theme.of(context).textTheme;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
@@ -79,7 +82,14 @@ class _Slide extends StatelessWidget {
           const SizedBox(height: 5),
 
           //* Titulo
+          SizedBox(
+            width: 150,
+            child: Text(
+              movie.title,
+              maxLines: 2,
 
+            ),
+          )
 
         ],
       ),

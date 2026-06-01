@@ -18,12 +18,33 @@ class MovieHorizontalListview extends StatelessWidget {
         children: [
 
           if(title != null || subTitle != null)
-            _Title(title: title, subTitle: subTitle)
+            _Title(title: title, subTitle: subTitle),
 
-
+          Expanded(
+            child: ListView.builder(
+              itemCount: movies.length,
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index){
+                return _Slide(movie: movies[index]);
+              },
+            )    
+          ),
         ],
       ),
     );
+  }
+}
+
+
+class _Slide extends StatelessWidget {
+
+  final Movie movie;
+  const _Slide({required this.movie});
+
+  @override
+  Widget build(BuildContext context) {
+    return Placeholder();
   }
 }
 

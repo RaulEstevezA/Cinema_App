@@ -87,8 +87,16 @@ class _Slide extends StatelessWidget {
             child: Text(
               movie.title,
               maxLines: 2,
-
+              style: textStyle.titleSmall,
             ),
+          ),
+
+          //* Rating
+          Row(
+            children: [
+              Icon(Icons.star_half_outlined, color: Colors.yellow.shade800),
+              
+            ],
           )
 
         ],

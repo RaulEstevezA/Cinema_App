@@ -2,6 +2,7 @@ import 'package:cinema_app/presentation/providers/providers.dart';
 import 'package:cinema_app/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -71,13 +72,13 @@ class _HomeViewState extends ConsumerState<_HomeView> {
           child: Column(
             children: [
               // const CustomAppbar(),
-          
+
               MoviesSlideshow(movies: slideShoeMovies),
-          
+
               MovieHorizontalListview(
                 movies: nowPlayingMovies,
                 title: 'En Cines',
-                subTitle: "lunes 20",
+                subTitle: DateFormat('EEEE d', 'es').format(DateTime.now()),
                 loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
               ),
 

@@ -32,4 +32,24 @@ class MoviedbDatasource extends MoviesDataSources {
 
     return movies;
   }
+  
+  @override
+  Future<List<Movie>> getPopular({int page = 1}) async {
+
+    final response = await dio.get(
+      '/movie/popular',
+      queryParameters: {
+        'page': page,
+      },
+    );
+
+    final movieDbResponse = MovieDbResponse.fromJson(response.data);
+
+    final List<Movie> movies = movieDbResponse.results
+        .where((moviedb) => moviedb.posterPath.isNotEmpty)
+        .map((moviedb) => MovieMapper.movieDBToEntity(moviedb))
+        .toList();
+
+    return movies;
+  }
 }

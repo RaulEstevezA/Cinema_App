@@ -33,12 +33,14 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     super.initState();
 
     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+    ref.read(popularMoviesProvider.notifier).loadNextPage();
   }
 
   @override
   Widget build(BuildContext context) {
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final slideShoeMovies = ref.watch(moviesSlideshowProvider);
+    final popularMovies = ref.watch(popularMoviesProvider);
 
     if (slideShoeMovies.isEmpty) return CircularProgressIndicator();
 
@@ -54,8 +56,8 @@ class _HomeViewState extends ConsumerState<_HomeView> {
         ),
 
 
-        SliverList(delegate: SliverChildBuilderDelegate((context, index){
-          return Column(
+        SliverToBoxAdapter(
+          child: Column(
             children: [
               // const CustomAppbar(),
           
@@ -70,16 +72,16 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
               MovieHorizontalListview(
                 movies: nowPlayingMovies,
-                title: 'En Cines',
+                title: 'Proximamente',
                 subTitle: "lunes 20",
                 loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
               ),
 
               MovieHorizontalListview(
                 movies: nowPlayingMovies,
-                title: 'En Cines',
-                subTitle: "lunes 20",
-                loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+                title: 'Populares',
+                // subTitle: "lunes 20",
+                loadNextPage: () => ref.read(popularMoviesProvider.notifier).loadNextPage(),
               ),
 
               MovieHorizontalListview(
@@ -93,9 +95,9 @@ class _HomeViewState extends ConsumerState<_HomeView> {
           
           
             ],
-          );
-        })
-    )]
+          ),
+        ),
+      ],
     );
   }
 }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class MobieScreen extends StatelessWidget {
+class MovieScreen extends StatelessWidget {
 
   static const name = 'movie-screen';
 
   final String movieId;
 
-  const MobieScreen({
+  const MovieScreen({
     super.key, 
     required this.movieId
   });

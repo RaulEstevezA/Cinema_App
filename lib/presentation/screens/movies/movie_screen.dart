@@ -55,16 +55,6 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
   }
 }
 
-class _MovieDetails extends StatelessWidget {
-  final Movie movie;
-  const _MovieDetails({required this.movie});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
 class _CustomSliverAppBar extends StatelessWidget {
 
   final Movie movie;
@@ -137,3 +127,23 @@ class _CustomSliverAppBar extends StatelessWidget {
   }
 }
 
+class _MovieDetails extends StatelessWidget {
+  final Movie movie;
+  const _MovieDetails({required this.movie});
+
+  @override
+  Widget build(BuildContext context) {
+
+    final size = MediaQuery.of(context).size;
+    final textStyles = Theme.of(context).textTheme;
+
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Placeholder()
+
+      ],
+    );
+  }
+}

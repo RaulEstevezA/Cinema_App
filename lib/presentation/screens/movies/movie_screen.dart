@@ -33,6 +33,11 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
   Widget build(BuildContext context) {
 
     final Movie? movie = ref.watch(movieInfoProvider)[widget.movieId];
+
+    if (movie == null){
+      return const Center(child: CircularProgressIndicator(strokeWidth: 2));
+    }
+    
     return Scaffold(
       appBar: AppBar(
         title: Text("MovieID: ${widget.movieId}"),

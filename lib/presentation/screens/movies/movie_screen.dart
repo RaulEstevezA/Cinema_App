@@ -141,8 +141,25 @@ class _MovieDetails extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Placeholder()
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadiusGeometry.circular(20),
+                child: Image.network(
+                  movie.posterPath,
+                  width: size.width * 0.3,
+                ),
+              ),
 
+              const SizedBox( width: 10),
+
+              
+            ],
+          ),
+        )
       ],
     );
   }

@@ -1,3 +1,4 @@
+import 'package:cinema_app/domain/entities/movies.dart';
 import 'package:cinema_app/presentation/providers/movies/movie_info_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,6 +31,8 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final Movie? movie = ref.watch(movieInfoProvider)[widget.movieId];
     return Scaffold(
       appBar: AppBar(
         title: Text("MovieID: ${widget.movieId}"),

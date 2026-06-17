@@ -1,11 +1,11 @@
 import 'package:cinema_app/config/constants/enviroment.dart';
+import 'package:cinema_app/domain/datasources/actors_datasources.dart';
 import 'package:cinema_app/domain/entities/actor.dart';
-import 'package:cinema_app/domain/repositories/actores_repositories.dart';
 import 'package:cinema_app/infrastructure/mappers/actor_mapper.dart';
 import 'package:cinema_app/infrastructure/models/moviedb/credits_response.dart';
 import 'package:dio/dio.dart';
 
-class ActorsMoviedbDatasource extends ActorsRepository{
+class ActorsMoviedbDatasource extends ActorsDatasources{
   
   final dio = Dio(BaseOptions(
     baseUrl: 'https://api.themoviedb.org/3',

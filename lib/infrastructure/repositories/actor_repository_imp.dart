@@ -5,7 +5,7 @@ import 'package:cinema_app/domain/repositories/actores_repositories.dart';
 class ActorRepositoryImp extends ActorsRepository{
 
   final ActorsDatasources datasources;
-  ActorRepositoryImp({required this.datasources});
+  ActorRepositoryImp(this.datasources);
 
   @override
   Future<List<Actor>> getActorsByMovie(String movieId) {

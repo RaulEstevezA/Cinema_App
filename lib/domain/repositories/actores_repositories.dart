@@ -1,5 +1,5 @@
 import 'package:cinema_app/domain/entities/actor.dart';
 
-abstract class ActoresRepositories {
+abstract class ActorsRepository {
   Future<List<Actor>> getActorsByMovie(String movieId);
 }

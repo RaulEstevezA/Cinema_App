@@ -74,11 +74,14 @@ class _CustomSliverAppBar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: false,
         titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        title: Text(
-          textAlign: TextAlign.start,
-          movie.title,
-          style: const TextStyle(fontSize: 20, color: Colors.white),
-        ),
+
+        // Titulo de la pelicula
+
+        // title: Text(
+        //   textAlign: TextAlign.start,
+        //   movie.title,
+        //   style: const TextStyle(fontSize: 20, color: Colors.white),
+        // ),
         
         background: Stack(
           children: [
@@ -90,21 +93,23 @@ class _CustomSliverAppBar extends StatelessWidget {
               ),
             ),
 
-            const SizedBox.expand(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    stops: [0.7, 1.0],
-                    colors: [
-                      Colors.transparent,
-                      Colors.black87,
-                    ]
-                  )
-                )
-              ),
-            ),
+            // Oscurecimiento del titulo
+
+            // const SizedBox.expand(
+            //   child: DecoratedBox(
+            //     decoration: BoxDecoration(
+            //       gradient: LinearGradient(
+            //         begin: Alignment.topCenter,
+            //         end: Alignment.bottomCenter,
+            //         stops: [0.7, 1.0],
+            //         colors: [
+            //           Colors.transparent,
+            //           Colors.black87,
+            //         ]
+            //       )
+            //     )
+            //   ),
+            // ),
 
             const SizedBox.expand(
               child: DecoratedBox(

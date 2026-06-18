@@ -199,7 +199,7 @@ class _MovieDetails extends StatelessWidget {
 
         _ActorsByMovie(movieId: movie.id.toString()),
 
-        const SizedBox(height: 100,),
+        const SizedBox(height: 50,),
       ],
     );
   }
@@ -220,6 +220,51 @@ class _ActorsByMovie extends ConsumerWidget {
       return const CircularProgressIndicator(strokeWidth: 2);
     }
 
-    return Placeholder();
+    final actors = actorsByMovie[movieId]!;
+
+    return SizedBox(
+      height: 300,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: actors.length,
+        itemBuilder: (context, index) {
+          final actor = actors[index];
+          return Container(
+            padding: const EdgeInsets.all(8.0),
+            width: 135,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+                //Actor foto
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.network(
+                    actor.profilePath,
+                    height: 180,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+
+                // nombre
+                const SizedBox(height: 5),
+                Text(actor.name, maxLines: 2),
+                Text(
+                  actor.character ?? '', 
+                  maxLines: 2, 
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                )
+              ],
+            ),
+          );
+        }
+      ),
+
+
+
+    );
   }
 }

@@ -197,10 +197,7 @@ class _MovieDetails extends StatelessWidget {
           ),
         ),
 
-
-
-        // TODO Mostrar Actories
-        _ActorsByMovie(movieId: movie.id),
+        _ActorsByMovie(movieId: movie.id.toString()),
 
         const SizedBox(height: 100,),
       ],
@@ -208,14 +205,21 @@ class _MovieDetails extends StatelessWidget {
   }
 }
 
-class _ActorsByMovie extends StatelessWidget {
+class _ActorsByMovie extends ConsumerWidget {
 
-  final int movieId;
+  final String movieId;
 
   const _ActorsByMovie({required this.movieId});
 
   @override
-  Widget build(BuildContext context) {
-    return Container();
+  Widget build(BuildContext context, ref) {
+
+    final actorsByMovie = ref.watch(actorsByMovieProvider);
+
+    if (actorsByMovie[movieId] == null) {
+      return const CircularProgressIndicator(strokeWidth: 2);
+    }
+
+    return Placeholder();
   }
 }

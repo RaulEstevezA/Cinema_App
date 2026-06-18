@@ -153,6 +153,17 @@ class _MovieDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
+          padding: const EdgeInsets.only(left: 40, right: 8, top: 12, bottom: 8),
+          child: Text(
+            movie.title,
+            style: textStyles.titleLarge?.copyWith(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+
+        Padding(
           padding: const EdgeInsets.all(8),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -175,7 +186,7 @@ class _MovieDetails extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(movie.title, style: textStyles.titleLarge),
+                    // Text(movie.title, style: textStyles.titleLarge),
                     Text(movie.overview),
 
                   ],

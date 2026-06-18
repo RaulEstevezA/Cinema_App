@@ -242,12 +242,14 @@ class _ActorsByMovie extends ConsumerWidget {
               children: [
 
                 //Actor foto
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.network(
-                    actor.profilePath,
-                    height: 180,
-                    fit: BoxFit.cover,
+                FadeInRight(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.network(
+                      actor.profilePath,
+                      height: 180,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
 

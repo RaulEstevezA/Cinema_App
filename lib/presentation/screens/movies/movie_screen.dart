@@ -200,9 +200,22 @@ class _MovieDetails extends StatelessWidget {
 
 
         // TODO Mostrar Actories
+        _ActorsByMovie(movieId: movie.id),
 
         const SizedBox(height: 100,),
       ],
     );
+  }
+}
+
+class _ActorsByMovie extends StatelessWidget {
+
+  final int movieId;
+
+  const _ActorsByMovie({required this.movieId});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

@@ -18,12 +18,12 @@ class SearchMovieDelegate extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     // TODO: implement buildResults
-    throw UnimplementedError();
+    return const Text('buildResults');
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
     // TODO: implement buildSuggestions
-    throw UnimplementedError();
+    return const Text('buildSuggestions');
   }
 }

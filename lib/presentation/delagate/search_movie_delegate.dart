@@ -2,7 +2,15 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cinema_app/domain/entities/movies.dart' show Movie;
 import 'package:flutter/material.dart';
 
+typedef SearchMoviesCallback = Future<List<Movie>> Function (String query);
+
 class SearchMovieDelegate extends SearchDelegate<Movie?> {
+
+  final SearchMovieDelegate searchMovies;
+
+  SearchMovieDelegate(
+    this.searchMovies
+  );
 
   @override
   String get searchFieldLabel => 'Buscar película';
@@ -20,6 +28,8 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
           icon: Icon(Icons.cleaning_services_outlined)
         ),
       ),
+
+
 
     ];
   }

@@ -1,6 +1,10 @@
+import 'package:cinema_app/domain/entities/movies.dart' show Movie;
 import 'package:flutter/material.dart';
 
-class SearchMovieDelegate extends SearchDelegate {
+class SearchMovieDelegate extends SearchDelegate<Movie?> {
+
+  @override
+  String get searchFieldLabel => 'Buscar película';
 
 
   @override
@@ -12,7 +16,10 @@ class SearchMovieDelegate extends SearchDelegate {
 
   @override
   Widget? buildLeading(BuildContext context) {
-    return const Text('buildLeading');
+    return IconButton(
+      onPressed: () => close(context, null), 
+      icon: Icon(Icons.arrow_back_ios_new_rounded)
+    );
   }
 
   @override

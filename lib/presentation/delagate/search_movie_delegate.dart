@@ -6,11 +6,12 @@ typedef SearchMoviesCallback = Future<List<Movie>> Function (String query);
 
 class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
-  final SearchMovieDelegate searchMovies;
+  final SearchMoviesCallback searchMovies;
+  Future<List<Movie>>? _moviesFuture;
 
-  SearchMovieDelegate(
-    this.searchMovies
-  );
+  SearchMovieDelegate({
+    required this.searchMovies
+  });
 
   @override
   String get searchFieldLabel => 'Buscar película';
@@ -50,7 +51,21 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // TODO: implement buildSuggestions
-    return const Text('buildSuggestions');
+
+    return FutureBuilder(
+      future: searchMovies(query),
+      builder: (context, snapshot) {
+        final movies = snapshot.data ?? [];
+
+        return ListView.builder(
+          itemCount: movies.length,
+          itemBuilder: (context, index) {
+            final movie = movies[index];
+            return ListTile( title: Text(movie.title),);
+
+          },
+        );
+      },
+    );
   }
 }

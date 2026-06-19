@@ -46,7 +46,6 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
     return const Text('buildResults');
   }
 

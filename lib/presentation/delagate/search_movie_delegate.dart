@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cinema_app/domain/entities/movies.dart' show Movie;
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,16 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
-      const Text('BuildActions'),
+
+      // boton limpieza
+      FadeIn(
+        animate: query.isNotEmpty,
+        child: IconButton(
+          onPressed: () => query = '', 
+          icon: Icon(Icons.cleaning_services_outlined)
+        ),
+      ),
+
     ];
   }
 

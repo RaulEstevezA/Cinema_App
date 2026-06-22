@@ -13,8 +13,6 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   StreamController<List<Movie>> debouncedMovies = StreamController.broadcast();
   Timer? _debounceTimer;
 
-  Future<List<Movie>>? _moviesFuture;
-
   SearchMovieDelegate({
     required this.searchMovies
   });
@@ -94,7 +92,10 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
           itemCount: movies.length,
           itemBuilder: (context, index) => _MovieItem(
             movie: movies[index],
-            onMovieSelected: close,
+            onMovieSelected: (context, movie){
+              clearStreams();
+              close(context, movie);
+            },
           )
         );
       },

@@ -10,11 +10,14 @@ typedef SearchMoviesCallback = Future<List<Movie>> Function (String query);
 class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
   final SearchMoviesCallback searchMovies;
+  final List<Movie> initalMovies;
+
   StreamController<List<Movie>> debouncedMovies = StreamController.broadcast();
   Timer? _debounceTimer;
 
   SearchMovieDelegate({
-    required this.searchMovies
+    required this.searchMovies,
+    this.initalMovies = const [],
   });
 
   void clearStreams () {

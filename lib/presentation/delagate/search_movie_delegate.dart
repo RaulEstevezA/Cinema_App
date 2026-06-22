@@ -10,7 +10,7 @@ typedef SearchMoviesCallback = Future<List<Movie>> Function (String query);
 class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
   final SearchMoviesCallback searchMovies;
-  final List<Movie> initialMovies;
+  List<Movie> initialMovies;
 
   StreamController<List<Movie>> debouncedMovies = StreamController.broadcast();
   Timer? _debounceTimer;
@@ -30,6 +30,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
     _debounceTimer = Timer(const Duration(milliseconds:500), () async {
       final movies = await searchMovies(query);
       debouncedMovies.add(movies);
+      initialMovies = movies;
     });
 
   }
@@ -69,7 +70,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return const Text('buildResults');
+    return _buildResultsAndSuggestions();
   }
 
   @override
@@ -77,12 +78,14 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
     _onQueryChanged (query);
 
+    return _buildResultsAndSuggestions();
+  }
+
+  Widget _buildResultsAndSuggestions() {
     return StreamBuilder(
       initialData: initialMovies,
       stream: debouncedMovies.stream,
       builder: (context, snapshot) {
-
-        //! Realizar peticion
         
         final movies = snapshot.data ?? [];
 
@@ -170,3 +173,4 @@ class _MovieItem extends StatelessWidget {
     );
   }
 }
+

@@ -64,7 +64,10 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
-      onPressed: () => close(context, null), 
+      onPressed: () {
+        clearStreams();
+        close(context, null);
+        }, 
       icon: Icon(Icons.arrow_back_ios_new_rounded)
     );
   }

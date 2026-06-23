@@ -30,14 +30,14 @@ final appRouter = GoRouter(
           ],
         ),
 
-        // StatefulShellBranch(
-        //   routes: [
-        //     GoRoute(
-        //       path: '/categories',
-        //       builder: ...
-        //     ),
-        //   ],
-        // ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/categories',
+              builder: (context, state) => FavoritesView(),
+            ),
+          ],
+        ),
 
         StatefulShellBranch(
           routes: [

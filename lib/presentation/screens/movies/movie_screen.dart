@@ -88,14 +88,6 @@ class _CustomSliverAppBar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: false,
         titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-
-        // Titulo de la pelicula
-
-        // title: Text(
-        //   textAlign: TextAlign.start,
-        //   movie.title,
-        //   style: const TextStyle(fontSize: 20, color: Colors.white),
-        // ),
         
         background: Stack(
           children: [
@@ -111,28 +103,10 @@ class _CustomSliverAppBar extends StatelessWidget {
               ),
             ),
 
-            // Oscurecimiento del titulo
-
-            // const SizedBox.expand(
-            //   child: DecoratedBox(
-            //     decoration: BoxDecoration(
-            //       gradient: LinearGradient(
-            //         begin: Alignment.topCenter,
-            //         end: Alignment.bottomCenter,
-            //         stops: [0.7, 1.0],
-            //         colors: [
-            //           Colors.transparent,
-            //           Colors.black87,
-            //         ]
-            //       )
-            //     )
-            //   ),
-            // ),
-
             // sombra del botón de "atrás"
             const _CustomGradient(
               begin: Alignment.topLeft,
-              end: Alignment.centerRight,
+              end: Alignment.bottomRight,
               stops: [0.0, 0.3],
               colors: [Colors.black87, Colors.transparent],
             ),
@@ -153,8 +127,8 @@ class _CustomSliverAppBar extends StatelessWidget {
 
 class _CustomGradient extends StatelessWidget {
 
-  final Alignment begin;
-  final Alignment end;
+  final AlignmentGeometry begin;
+  final AlignmentGeometry end;
   final List<double> stops;
   final List<Color> colors;
 

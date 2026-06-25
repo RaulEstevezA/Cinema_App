@@ -129,6 +129,7 @@ class _CustomSliverAppBar extends StatelessWidget {
             //   ),
             // ),
 
+            // sombra del botón de "atrás"
             const SizedBox.expand(
               child: DecoratedBox(
                 decoration: BoxDecoration(
@@ -143,7 +144,21 @@ class _CustomSliverAppBar extends StatelessWidget {
                   )
                 )
               ),
-            )
+            ),
+
+            // Sombra del botón de favoritos
+            const SizedBox.expand(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    stops: [0.0, 0.3],
+                    colors: [Colors.black87, Colors.transparent],
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

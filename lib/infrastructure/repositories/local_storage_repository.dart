@@ -10,19 +10,16 @@ class LocalStorageRepositoryImp extends LocalStorageRepositories {
 
   @override
   Future<bool> isFavoriteMovie(int movieId) {
-    // TODO: implement isFavoriteMovie
-    throw UnimplementedError();
+    return datasource.isFavoriteMovie(movieId);
   }
 
   @override
   Future<List<Movie>> loadFavoriteMovies({int limit = 10, int offset = 0}) {
-    // TODO: implement loadFavoriteMovies
-    throw UnimplementedError();
+    return datasource.loadFavoriteMovies(limit: limit, offset: offset);
   }
 
   @override
   Future<void> toggleFavoriteMovie(Movie movie) {
-    // TODO: implement toggleFavoriteMovie
-    throw UnimplementedError();
+    return datasource.toggleFavoriteMovie(movie);
   }
 }

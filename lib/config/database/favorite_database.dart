@@ -43,3 +43,5 @@ class AppDatabase extends _$AppDatabase {
     );
   }
 }
+
+final db = AppDatabase();

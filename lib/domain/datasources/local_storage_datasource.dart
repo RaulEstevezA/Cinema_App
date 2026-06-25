@@ -1,5 +1,3 @@
-
-
 import 'package:cinema_app/domain/entities/movies.dart';
 
 abstract class LocalStorageDatasource {

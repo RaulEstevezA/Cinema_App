@@ -16,9 +16,10 @@ class DriftDatasource extends LocalStorageDatasource {
     final query = database.select(database.favoriteMovies)
     ..where((table) => table.movieId.equals(movieId));
     // Ejecutar QUERY
-    final FavoriteMovies = await query.getSingleOrNull();
+    final favoriteMovie = await query.getSingleOrNull();
 
     // Retornar QUERY
+    return favoriteMovie != null;
   }
 
   @override

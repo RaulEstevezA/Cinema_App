@@ -33,11 +33,11 @@ class $FavoriteMoviesTable extends FavoriteMovies
     type: DriftSqlType.int,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _backdropPatchMeta = const VerificationMeta(
-    'backdropPatch',
+  static const VerificationMeta _backdropPathMeta = const VerificationMeta(
+    'backdropPath',
   );
   @override
-  late final GeneratedColumn<String> backdropPatch = GeneratedColumn<String>(
+  late final GeneratedColumn<String> backdropPath = GeneratedColumn<String>(
     'backdrop_path',
     aliasedName,
     false,
@@ -55,21 +55,21 @@ class $FavoriteMoviesTable extends FavoriteMovies
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _posterPatchMeta = const VerificationMeta(
-    'posterPatch',
+  static const VerificationMeta _posterPathMeta = const VerificationMeta(
+    'posterPath',
   );
   @override
-  late final GeneratedColumn<String> posterPatch = GeneratedColumn<String>(
+  late final GeneratedColumn<String> posterPath = GeneratedColumn<String>(
     'poster_pad',
     aliasedName,
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _tileMeta = const VerificationMeta('tile');
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
   @override
-  late final GeneratedColumn<String> tile = GeneratedColumn<String>(
-    'tile',
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+    'title',
     aliasedName,
     false,
     type: DriftSqlType.string,
@@ -91,10 +91,10 @@ class $FavoriteMoviesTable extends FavoriteMovies
   List<GeneratedColumn> get $columns => [
     id,
     movieId,
-    backdropPatch,
+    backdropPath,
     originalTitle,
-    posterPatch,
-    tile,
+    posterPath,
+    title,
     voteAverage,
   ];
   @override
@@ -122,14 +122,14 @@ class $FavoriteMoviesTable extends FavoriteMovies
     }
     if (data.containsKey('backdrop_path')) {
       context.handle(
-        _backdropPatchMeta,
-        backdropPatch.isAcceptableOrUnknown(
+        _backdropPathMeta,
+        backdropPath.isAcceptableOrUnknown(
           data['backdrop_path']!,
-          _backdropPatchMeta,
+          _backdropPathMeta,
         ),
       );
     } else if (isInserting) {
-      context.missing(_backdropPatchMeta);
+      context.missing(_backdropPathMeta);
     }
     if (data.containsKey('original_title')) {
       context.handle(
@@ -144,22 +144,19 @@ class $FavoriteMoviesTable extends FavoriteMovies
     }
     if (data.containsKey('poster_pad')) {
       context.handle(
-        _posterPatchMeta,
-        posterPatch.isAcceptableOrUnknown(
-          data['poster_pad']!,
-          _posterPatchMeta,
-        ),
+        _posterPathMeta,
+        posterPath.isAcceptableOrUnknown(data['poster_pad']!, _posterPathMeta),
       );
     } else if (isInserting) {
-      context.missing(_posterPatchMeta);
+      context.missing(_posterPathMeta);
     }
-    if (data.containsKey('tile')) {
+    if (data.containsKey('title')) {
       context.handle(
-        _tileMeta,
-        tile.isAcceptableOrUnknown(data['tile']!, _tileMeta),
+        _titleMeta,
+        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
       );
     } else if (isInserting) {
-      context.missing(_tileMeta);
+      context.missing(_titleMeta);
     }
     if (data.containsKey('vote_average')) {
       context.handle(
@@ -187,7 +184,7 @@ class $FavoriteMoviesTable extends FavoriteMovies
         DriftSqlType.int,
         data['${effectivePrefix}movie_id'],
       )!,
-      backdropPatch: attachedDatabase.typeMapping.read(
+      backdropPath: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}backdrop_path'],
       )!,
@@ -195,13 +192,13 @@ class $FavoriteMoviesTable extends FavoriteMovies
         DriftSqlType.string,
         data['${effectivePrefix}original_title'],
       )!,
-      posterPatch: attachedDatabase.typeMapping.read(
+      posterPath: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}poster_pad'],
       )!,
-      tile: attachedDatabase.typeMapping.read(
+      title: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
-        data['${effectivePrefix}tile'],
+        data['${effectivePrefix}title'],
       )!,
       voteAverage: attachedDatabase.typeMapping.read(
         DriftSqlType.double,
@@ -219,18 +216,18 @@ class $FavoriteMoviesTable extends FavoriteMovies
 class FavoriteMovy extends DataClass implements Insertable<FavoriteMovy> {
   final int id;
   final int movieId;
-  final String backdropPatch;
+  final String backdropPath;
   final String originalTitle;
-  final String posterPatch;
-  final String tile;
+  final String posterPath;
+  final String title;
   final double voteAverage;
   const FavoriteMovy({
     required this.id,
     required this.movieId,
-    required this.backdropPatch,
+    required this.backdropPath,
     required this.originalTitle,
-    required this.posterPatch,
-    required this.tile,
+    required this.posterPath,
+    required this.title,
     required this.voteAverage,
   });
   @override
@@ -238,10 +235,10 @@ class FavoriteMovy extends DataClass implements Insertable<FavoriteMovy> {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
     map['movie_id'] = Variable<int>(movieId);
-    map['backdrop_path'] = Variable<String>(backdropPatch);
+    map['backdrop_path'] = Variable<String>(backdropPath);
     map['original_title'] = Variable<String>(originalTitle);
-    map['poster_pad'] = Variable<String>(posterPatch);
-    map['tile'] = Variable<String>(tile);
+    map['poster_pad'] = Variable<String>(posterPath);
+    map['title'] = Variable<String>(title);
     map['vote_average'] = Variable<double>(voteAverage);
     return map;
   }
@@ -250,10 +247,10 @@ class FavoriteMovy extends DataClass implements Insertable<FavoriteMovy> {
     return FavoriteMoviesCompanion(
       id: Value(id),
       movieId: Value(movieId),
-      backdropPatch: Value(backdropPatch),
+      backdropPath: Value(backdropPath),
       originalTitle: Value(originalTitle),
-      posterPatch: Value(posterPatch),
-      tile: Value(tile),
+      posterPath: Value(posterPath),
+      title: Value(title),
       voteAverage: Value(voteAverage),
     );
   }
@@ -266,10 +263,10 @@ class FavoriteMovy extends DataClass implements Insertable<FavoriteMovy> {
     return FavoriteMovy(
       id: serializer.fromJson<int>(json['id']),
       movieId: serializer.fromJson<int>(json['movieId']),
-      backdropPatch: serializer.fromJson<String>(json['backdropPatch']),
+      backdropPath: serializer.fromJson<String>(json['backdropPath']),
       originalTitle: serializer.fromJson<String>(json['originalTitle']),
-      posterPatch: serializer.fromJson<String>(json['posterPatch']),
-      tile: serializer.fromJson<String>(json['tile']),
+      posterPath: serializer.fromJson<String>(json['posterPath']),
+      title: serializer.fromJson<String>(json['title']),
       voteAverage: serializer.fromJson<double>(json['voteAverage']),
     );
   }
@@ -279,10 +276,10 @@ class FavoriteMovy extends DataClass implements Insertable<FavoriteMovy> {
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'movieId': serializer.toJson<int>(movieId),
-      'backdropPatch': serializer.toJson<String>(backdropPatch),
+      'backdropPath': serializer.toJson<String>(backdropPath),
       'originalTitle': serializer.toJson<String>(originalTitle),
-      'posterPatch': serializer.toJson<String>(posterPatch),
-      'tile': serializer.toJson<String>(tile),
+      'posterPath': serializer.toJson<String>(posterPath),
+      'title': serializer.toJson<String>(title),
       'voteAverage': serializer.toJson<double>(voteAverage),
     };
   }
@@ -290,34 +287,34 @@ class FavoriteMovy extends DataClass implements Insertable<FavoriteMovy> {
   FavoriteMovy copyWith({
     int? id,
     int? movieId,
-    String? backdropPatch,
+    String? backdropPath,
     String? originalTitle,
-    String? posterPatch,
-    String? tile,
+    String? posterPath,
+    String? title,
     double? voteAverage,
   }) => FavoriteMovy(
     id: id ?? this.id,
     movieId: movieId ?? this.movieId,
-    backdropPatch: backdropPatch ?? this.backdropPatch,
+    backdropPath: backdropPath ?? this.backdropPath,
     originalTitle: originalTitle ?? this.originalTitle,
-    posterPatch: posterPatch ?? this.posterPatch,
-    tile: tile ?? this.tile,
+    posterPath: posterPath ?? this.posterPath,
+    title: title ?? this.title,
     voteAverage: voteAverage ?? this.voteAverage,
   );
   FavoriteMovy copyWithCompanion(FavoriteMoviesCompanion data) {
     return FavoriteMovy(
       id: data.id.present ? data.id.value : this.id,
       movieId: data.movieId.present ? data.movieId.value : this.movieId,
-      backdropPatch: data.backdropPatch.present
-          ? data.backdropPatch.value
-          : this.backdropPatch,
+      backdropPath: data.backdropPath.present
+          ? data.backdropPath.value
+          : this.backdropPath,
       originalTitle: data.originalTitle.present
           ? data.originalTitle.value
           : this.originalTitle,
-      posterPatch: data.posterPatch.present
-          ? data.posterPatch.value
-          : this.posterPatch,
-      tile: data.tile.present ? data.tile.value : this.tile,
+      posterPath: data.posterPath.present
+          ? data.posterPath.value
+          : this.posterPath,
+      title: data.title.present ? data.title.value : this.title,
       voteAverage: data.voteAverage.present
           ? data.voteAverage.value
           : this.voteAverage,
@@ -329,10 +326,10 @@ class FavoriteMovy extends DataClass implements Insertable<FavoriteMovy> {
     return (StringBuffer('FavoriteMovy(')
           ..write('id: $id, ')
           ..write('movieId: $movieId, ')
-          ..write('backdropPatch: $backdropPatch, ')
+          ..write('backdropPath: $backdropPath, ')
           ..write('originalTitle: $originalTitle, ')
-          ..write('posterPatch: $posterPatch, ')
-          ..write('tile: $tile, ')
+          ..write('posterPath: $posterPath, ')
+          ..write('title: $title, ')
           ..write('voteAverage: $voteAverage')
           ..write(')'))
         .toString();
@@ -342,10 +339,10 @@ class FavoriteMovy extends DataClass implements Insertable<FavoriteMovy> {
   int get hashCode => Object.hash(
     id,
     movieId,
-    backdropPatch,
+    backdropPath,
     originalTitle,
-    posterPatch,
-    tile,
+    posterPath,
+    title,
     voteAverage,
   );
   @override
@@ -354,59 +351,59 @@ class FavoriteMovy extends DataClass implements Insertable<FavoriteMovy> {
       (other is FavoriteMovy &&
           other.id == this.id &&
           other.movieId == this.movieId &&
-          other.backdropPatch == this.backdropPatch &&
+          other.backdropPath == this.backdropPath &&
           other.originalTitle == this.originalTitle &&
-          other.posterPatch == this.posterPatch &&
-          other.tile == this.tile &&
+          other.posterPath == this.posterPath &&
+          other.title == this.title &&
           other.voteAverage == this.voteAverage);
 }
 
 class FavoriteMoviesCompanion extends UpdateCompanion<FavoriteMovy> {
   final Value<int> id;
   final Value<int> movieId;
-  final Value<String> backdropPatch;
+  final Value<String> backdropPath;
   final Value<String> originalTitle;
-  final Value<String> posterPatch;
-  final Value<String> tile;
+  final Value<String> posterPath;
+  final Value<String> title;
   final Value<double> voteAverage;
   const FavoriteMoviesCompanion({
     this.id = const Value.absent(),
     this.movieId = const Value.absent(),
-    this.backdropPatch = const Value.absent(),
+    this.backdropPath = const Value.absent(),
     this.originalTitle = const Value.absent(),
-    this.posterPatch = const Value.absent(),
-    this.tile = const Value.absent(),
+    this.posterPath = const Value.absent(),
+    this.title = const Value.absent(),
     this.voteAverage = const Value.absent(),
   });
   FavoriteMoviesCompanion.insert({
     this.id = const Value.absent(),
     required int movieId,
-    required String backdropPatch,
+    required String backdropPath,
     required String originalTitle,
-    required String posterPatch,
-    required String tile,
+    required String posterPath,
+    required String title,
     this.voteAverage = const Value.absent(),
   }) : movieId = Value(movieId),
-       backdropPatch = Value(backdropPatch),
+       backdropPath = Value(backdropPath),
        originalTitle = Value(originalTitle),
-       posterPatch = Value(posterPatch),
-       tile = Value(tile);
+       posterPath = Value(posterPath),
+       title = Value(title);
   static Insertable<FavoriteMovy> custom({
     Expression<int>? id,
     Expression<int>? movieId,
-    Expression<String>? backdropPatch,
+    Expression<String>? backdropPath,
     Expression<String>? originalTitle,
-    Expression<String>? posterPatch,
-    Expression<String>? tile,
+    Expression<String>? posterPath,
+    Expression<String>? title,
     Expression<double>? voteAverage,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (movieId != null) 'movie_id': movieId,
-      if (backdropPatch != null) 'backdrop_path': backdropPatch,
+      if (backdropPath != null) 'backdrop_path': backdropPath,
       if (originalTitle != null) 'original_title': originalTitle,
-      if (posterPatch != null) 'poster_pad': posterPatch,
-      if (tile != null) 'tile': tile,
+      if (posterPath != null) 'poster_pad': posterPath,
+      if (title != null) 'title': title,
       if (voteAverage != null) 'vote_average': voteAverage,
     });
   }
@@ -414,19 +411,19 @@ class FavoriteMoviesCompanion extends UpdateCompanion<FavoriteMovy> {
   FavoriteMoviesCompanion copyWith({
     Value<int>? id,
     Value<int>? movieId,
-    Value<String>? backdropPatch,
+    Value<String>? backdropPath,
     Value<String>? originalTitle,
-    Value<String>? posterPatch,
-    Value<String>? tile,
+    Value<String>? posterPath,
+    Value<String>? title,
     Value<double>? voteAverage,
   }) {
     return FavoriteMoviesCompanion(
       id: id ?? this.id,
       movieId: movieId ?? this.movieId,
-      backdropPatch: backdropPatch ?? this.backdropPatch,
+      backdropPath: backdropPath ?? this.backdropPath,
       originalTitle: originalTitle ?? this.originalTitle,
-      posterPatch: posterPatch ?? this.posterPatch,
-      tile: tile ?? this.tile,
+      posterPath: posterPath ?? this.posterPath,
+      title: title ?? this.title,
       voteAverage: voteAverage ?? this.voteAverage,
     );
   }
@@ -440,17 +437,17 @@ class FavoriteMoviesCompanion extends UpdateCompanion<FavoriteMovy> {
     if (movieId.present) {
       map['movie_id'] = Variable<int>(movieId.value);
     }
-    if (backdropPatch.present) {
-      map['backdrop_path'] = Variable<String>(backdropPatch.value);
+    if (backdropPath.present) {
+      map['backdrop_path'] = Variable<String>(backdropPath.value);
     }
     if (originalTitle.present) {
       map['original_title'] = Variable<String>(originalTitle.value);
     }
-    if (posterPatch.present) {
-      map['poster_pad'] = Variable<String>(posterPatch.value);
+    if (posterPath.present) {
+      map['poster_pad'] = Variable<String>(posterPath.value);
     }
-    if (tile.present) {
-      map['tile'] = Variable<String>(tile.value);
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
     }
     if (voteAverage.present) {
       map['vote_average'] = Variable<double>(voteAverage.value);
@@ -463,10 +460,10 @@ class FavoriteMoviesCompanion extends UpdateCompanion<FavoriteMovy> {
     return (StringBuffer('FavoriteMoviesCompanion(')
           ..write('id: $id, ')
           ..write('movieId: $movieId, ')
-          ..write('backdropPatch: $backdropPatch, ')
+          ..write('backdropPath: $backdropPath, ')
           ..write('originalTitle: $originalTitle, ')
-          ..write('posterPatch: $posterPatch, ')
-          ..write('tile: $tile, ')
+          ..write('posterPath: $posterPath, ')
+          ..write('title: $title, ')
           ..write('voteAverage: $voteAverage')
           ..write(')'))
         .toString();
@@ -488,20 +485,20 @@ typedef $$FavoriteMoviesTableCreateCompanionBuilder =
     FavoriteMoviesCompanion Function({
       Value<int> id,
       required int movieId,
-      required String backdropPatch,
+      required String backdropPath,
       required String originalTitle,
-      required String posterPatch,
-      required String tile,
+      required String posterPath,
+      required String title,
       Value<double> voteAverage,
     });
 typedef $$FavoriteMoviesTableUpdateCompanionBuilder =
     FavoriteMoviesCompanion Function({
       Value<int> id,
       Value<int> movieId,
-      Value<String> backdropPatch,
+      Value<String> backdropPath,
       Value<String> originalTitle,
-      Value<String> posterPatch,
-      Value<String> tile,
+      Value<String> posterPath,
+      Value<String> title,
       Value<double> voteAverage,
     });
 
@@ -524,8 +521,8 @@ class $$FavoriteMoviesTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get backdropPatch => $composableBuilder(
-    column: $table.backdropPatch,
+  ColumnFilters<String> get backdropPath => $composableBuilder(
+    column: $table.backdropPath,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -534,13 +531,13 @@ class $$FavoriteMoviesTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get posterPatch => $composableBuilder(
-    column: $table.posterPatch,
+  ColumnFilters<String> get posterPath => $composableBuilder(
+    column: $table.posterPath,
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get tile => $composableBuilder(
-    column: $table.tile,
+  ColumnFilters<String> get title => $composableBuilder(
+    column: $table.title,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -569,8 +566,8 @@ class $$FavoriteMoviesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get backdropPatch => $composableBuilder(
-    column: $table.backdropPatch,
+  ColumnOrderings<String> get backdropPath => $composableBuilder(
+    column: $table.backdropPath,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -579,13 +576,13 @@ class $$FavoriteMoviesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get posterPatch => $composableBuilder(
-    column: $table.posterPatch,
+  ColumnOrderings<String> get posterPath => $composableBuilder(
+    column: $table.posterPath,
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get tile => $composableBuilder(
-    column: $table.tile,
+  ColumnOrderings<String> get title => $composableBuilder(
+    column: $table.title,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -610,8 +607,8 @@ class $$FavoriteMoviesTableAnnotationComposer
   GeneratedColumn<int> get movieId =>
       $composableBuilder(column: $table.movieId, builder: (column) => column);
 
-  GeneratedColumn<String> get backdropPatch => $composableBuilder(
-    column: $table.backdropPatch,
+  GeneratedColumn<String> get backdropPath => $composableBuilder(
+    column: $table.backdropPath,
     builder: (column) => column,
   );
 
@@ -620,13 +617,13 @@ class $$FavoriteMoviesTableAnnotationComposer
     builder: (column) => column,
   );
 
-  GeneratedColumn<String> get posterPatch => $composableBuilder(
-    column: $table.posterPatch,
+  GeneratedColumn<String> get posterPath => $composableBuilder(
+    column: $table.posterPath,
     builder: (column) => column,
   );
 
-  GeneratedColumn<String> get tile =>
-      $composableBuilder(column: $table.tile, builder: (column) => column);
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
 
   GeneratedColumn<double> get voteAverage => $composableBuilder(
     column: $table.voteAverage,
@@ -669,36 +666,36 @@ class $$FavoriteMoviesTableTableManager
               ({
                 Value<int> id = const Value.absent(),
                 Value<int> movieId = const Value.absent(),
-                Value<String> backdropPatch = const Value.absent(),
+                Value<String> backdropPath = const Value.absent(),
                 Value<String> originalTitle = const Value.absent(),
-                Value<String> posterPatch = const Value.absent(),
-                Value<String> tile = const Value.absent(),
+                Value<String> posterPath = const Value.absent(),
+                Value<String> title = const Value.absent(),
                 Value<double> voteAverage = const Value.absent(),
               }) => FavoriteMoviesCompanion(
                 id: id,
                 movieId: movieId,
-                backdropPatch: backdropPatch,
+                backdropPath: backdropPath,
                 originalTitle: originalTitle,
-                posterPatch: posterPatch,
-                tile: tile,
+                posterPath: posterPath,
+                title: title,
                 voteAverage: voteAverage,
               ),
           createCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
                 required int movieId,
-                required String backdropPatch,
+                required String backdropPath,
                 required String originalTitle,
-                required String posterPatch,
-                required String tile,
+                required String posterPath,
+                required String title,
                 Value<double> voteAverage = const Value.absent(),
               }) => FavoriteMoviesCompanion.insert(
                 id: id,
                 movieId: movieId,
-                backdropPatch: backdropPatch,
+                backdropPath: backdropPath,
                 originalTitle: originalTitle,
-                posterPatch: posterPatch,
-                tile: tile,
+                posterPath: posterPath,
+                title: title,
                 voteAverage: voteAverage,
               ),
           withReferenceMapper: (p0) => p0

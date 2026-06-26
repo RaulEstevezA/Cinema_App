@@ -2,7 +2,6 @@ import 'package:cinema_app/config/database/favorite_database.dart';
 import 'package:cinema_app/domain/datasources/local_storage_datasource.dart';
 import 'package:cinema_app/domain/entities/movies.dart';
 import 'package:drift/drift.dart';
-import 'package:flutter/services.dart';
 
 class DriftDatasource extends LocalStorageDatasource {
 

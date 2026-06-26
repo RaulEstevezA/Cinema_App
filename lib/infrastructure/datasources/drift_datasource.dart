@@ -1,6 +1,7 @@
 import 'package:cinema_app/config/database/favorite_database.dart';
 import 'package:cinema_app/domain/datasources/local_storage_datasource.dart';
 import 'package:cinema_app/domain/entities/movies.dart';
+import 'package:drift/drift.dart';
 
 class DriftDatasource extends LocalStorageDatasource {
 
@@ -11,8 +12,12 @@ class DriftDatasource extends LocalStorageDatasource {
   
   @override
   Future<bool> isFavoriteMovie(int movieId) {
-    // TODO: implement isFavoriteMovie
-    throw UnimplementedError();
+    // Contruir QUERY
+    final query = database.select(database.favoriteMovies)
+    ..where((table) => table.movieId.equals(movieId));
+    // Ejecutar QUERY
+
+    // Retornar QUERY
   }
 
   @override

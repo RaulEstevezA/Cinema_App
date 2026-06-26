@@ -1,7 +1,14 @@
+import 'package:cinema_app/config/database/favorite_database.dart';
 import 'package:cinema_app/domain/datasources/local_storage_datasource.dart';
 import 'package:cinema_app/domain/entities/movies.dart';
 
 class DriftDatasource extends LocalStorageDatasource {
+
+  final AppDatabase database;
+
+  DriftDatasource([AppDatabase? databaseToUse])
+    : database = databaseToUse ?? db;
+  
   @override
   Future<bool> isFavoriteMovie(int movieId) {
     // TODO: implement isFavoriteMovie

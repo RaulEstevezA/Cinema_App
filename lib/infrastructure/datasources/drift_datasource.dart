@@ -36,6 +36,8 @@ class DriftDatasource extends LocalStorageDatasource {
     if (isFavorite) {
       final deleteQuery = database.delete(database.favoriteMovies)
         ..where((table) => table.movieId.equals(movie.id));
+
+      await deleteQuery.go();
     }
   }
 

@@ -29,9 +29,14 @@ class DriftDatasource extends LocalStorageDatasource {
   }
 
   @override
-  Future<void> toggleFavoriteMovie(Movie movie) {
-    // TODO: implement toggleFavoriteMovie
-    throw UnimplementedError();
+  Future<void> toggleFavoriteMovie(Movie movie) async {
+    
+    final isFavorite = await isFavoriteMovie(movie.id);
+
+    if (isFavorite) {
+      final deleteQuery = database.delete(database.favoriteMovies)
+        ..where((table) => table.movieId.equals(movie.id));
+    }
   }
 
 }

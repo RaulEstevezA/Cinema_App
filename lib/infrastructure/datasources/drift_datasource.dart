@@ -38,7 +38,19 @@ class DriftDatasource extends LocalStorageDatasource {
         ..where((table) => table.movieId.equals(movie.id));
 
       await deleteQuery.go();
+      return;
     }
+
+    await database.into(database.favoriteMovies).insert(
+      FavoriteMoviesCompanion.insert(
+        movieId: movie.id, 
+        backdropPatch: movie.backdropPath, 
+        originalTitle: movie.originalTitle, 
+        posterPatch: movie.posterPath, 
+        tile: movie.title,
+        voteAverage: Value(movie.voteAverage)
+      )
+    );
   }
 
 }

@@ -14,10 +14,10 @@ part 'favorite_database.g.dart';
 class FavoriteMovies extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get movieId => integer().named('movie_id')();
-  TextColumn get backdropPatch => text().named('backdrop_path')();
+  TextColumn get backdropPath => text().named('backdrop_path')();
   TextColumn get originalTitle => text().named('original_title')();
-  TextColumn get posterPatch => text().named('poster_pad')();
-  TextColumn get tile => text()();
+  TextColumn get posterPath => text().named('poster_pad')();
+  TextColumn get title => text()();
   RealColumn get voteAverage => real().named('vote_average').withDefault(const Constant(0.0))();
 }
 

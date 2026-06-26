@@ -11,11 +11,12 @@ class DriftDatasource extends LocalStorageDatasource {
     : database = databaseToUse ?? db;
   
   @override
-  Future<bool> isFavoriteMovie(int movieId) {
+  Future<bool> isFavoriteMovie(int movieId) async {
     // Contruir QUERY
     final query = database.select(database.favoriteMovies)
     ..where((table) => table.movieId.equals(movieId));
     // Ejecutar QUERY
+    final FavoriteMovies = await query.getSingleOrNull();
 
     // Retornar QUERY
   }

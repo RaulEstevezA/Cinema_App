@@ -70,10 +70,10 @@ class DriftDatasource extends LocalStorageDatasource {
     await database.into(database.favoriteMovies).insert(
       FavoriteMoviesCompanion.insert(
         movieId: movie.id, 
-        backdropPatch: movie.backdropPath, 
+        backdropPath: movie.backdropPath, 
         originalTitle: movie.originalTitle, 
-        posterPatch: movie.posterPath, 
-        tile: movie.title,
+        posterPath: movie.posterPath, 
+        title: movie.title,
         voteAverage: Value(movie.voteAverage)
       )
     );

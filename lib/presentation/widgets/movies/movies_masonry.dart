@@ -26,12 +26,26 @@ class _MoviesMasonryState extends State<MoviesMasonry> {
 
   @override
   Widget build(BuildContext context) {
-    return MasonryGridView.count(
-      crossAxisCount: 3, 
-      itemBuilder:(context, index) {
-        return MoviePosterLink(movie: widget.movies[index]);
-      },
-      );
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: MasonryGridView.count(
+        crossAxisCount: 3,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
+        itemCount: widget.movies.length,
+        itemBuilder:(context, index) {
+          if (index == 1){
+            return Column(
+              children: [
+                const SizedBox(height: 40),
+                MoviePosterLink(movie: widget.movies[index])
+              ],
+            );
+          }
+          return MoviePosterLink(movie: widget.movies[index]);
+        },
+        ),
+    );
   }
 }
 

@@ -1,61 +1,66 @@
 import 'package:cinema_app/config/database/favorite_database.dart';
 import 'package:cinema_app/domain/datasources/local_storage_datasource.dart';
 import 'package:cinema_app/domain/entities/movies.dart';
-import 'package:drift/drift.dart';
+import 'package:drift/drift.dart' as drift;
+
 
 class DriftDatasource extends LocalStorageDatasource {
-
   final AppDatabase database;
 
   DriftDatasource([AppDatabase? databaseToUse])
     : database = databaseToUse ?? db;
-  
+
   @override
   Future<bool> isFavoriteMovie(int movieId) async {
-    // Contruir QUERY
+    // Construir el query
     final query = database.select(database.favoriteMovies)
-    ..where((table) => table.movieId.equals(movieId));
-    // Ejecutar QUERY
+      ..where((table) => table.movieId.equals(movieId));
+
+    // Ejecutar el query
     final favoriteMovie = await query.getSingleOrNull();
 
-    // Retornar QUERY
+    // Retornar el resultado
     return favoriteMovie != null;
   }
 
   @override
-  Future<List<Movie>> loadFavoriteMovies({int limit = 10, int offset = 0}) async {
-    // query
+  Future<List<Movie>> loadFavoriteMovies({
+    int limit = 10,
+    int offset = 0,
+  }) async {
+    // Query
     final query = database.select(database.favoriteMovies)
-      ..limit(limit, offset:offset);
+      ..limit(limit, offset: offset);
 
     // Ejecutar el query
-    final favoriteMoviesRows = await query.get();
+    final favoriteMovieRows = await query.get();
 
-    final movies = favoriteMoviesRows.map(
-      (row) => Movie(
-        adult: false,
-        backdropPath: row.backdropPath, 
-        genreIds: const [], 
-        id: row.movieId, 
-        originalLanguage: '', 
-        originalTitle: row.originalTitle, 
-        overview: '', 
-        popularity: 0, 
-        posterPath: row.posterPath, 
-        releaseDate: DateTime.now(), 
-        title: row.title, 
-        video: false, 
-        voteAverage: row.voteAverage, 
-        voteCount: 0
-      )
-    ).toList();
+    final movies = favoriteMovieRows
+        .map(
+          (row) => Movie(
+            adult: false,
+            backdropPath: row.backdropPath,
+            genreIds: const [],
+            id: row.movieId,
+            originalLanguage: '',
+            originalTitle: row.originalTitle,
+            overview: '',
+            popularity: 0,
+            posterPath: row.posterPath,
+            releaseDate: DateTime.now(),
+            title: row.title,
+            video: false,
+            voteAverage: row.voteAverage,
+            voteCount: 0,
+          ),
+        )
+        .toList();
 
     return movies;
   }
 
   @override
   Future<void> toggleFavoriteMovie(Movie movie) async {
-    
     final isFavorite = await isFavoriteMovie(movie.id);
 
     if (isFavorite) {
@@ -66,16 +71,17 @@ class DriftDatasource extends LocalStorageDatasource {
       return;
     }
 
-    await database.into(database.favoriteMovies).insert(
-      FavoriteMoviesCompanion.insert(
-        movieId: movie.id, 
-        backdropPath: movie.backdropPath, 
-        originalTitle: movie.originalTitle, 
-        posterPath: movie.posterPath, 
-        title: movie.title,
-        voteAverage: Value(movie.voteAverage)
-      )
-    );
+    await database
+        .into(database.favoriteMovies)
+        .insert(
+          FavoriteMoviesCompanion.insert(
+            movieId: movie.id,
+            backdropPath: movie.backdropPath,
+            originalTitle: movie.originalTitle,
+            posterPath: movie.posterPath,
+            title: movie.title,
+            voteAverage: drift.Value(movie.voteAverage),
+          ),
+        );
   }
-
 }

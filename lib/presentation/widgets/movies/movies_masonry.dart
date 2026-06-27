@@ -23,6 +23,33 @@ class _MoviesMasonryState extends State<MoviesMasonry> {
   @override
   void initState() {
     super.initState();
+
+    scrollController.addListener((){
+      // if(widget.loadNextPage == null) return;
+
+      if(scrollController.position.pixels +200 >= scrollController.position.maxScrollExtent) {
+        loadNextPageMovies();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  void loadNextPageMovies() async {
+    if(isLoading || siLastPage) return;
+    if(widget.loadNextPage == null) return;
+
+    isLoading = true;
+    final movies = await widget.loadNextPage!();
+    isLoading = false;
+
+    if (movies.isEmpty){
+      siLastPage = true;
+    }
   }
 
   @override

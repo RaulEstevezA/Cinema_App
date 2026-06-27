@@ -302,6 +302,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.1"
+  flutter_staggered_grid:
+    dependency: "direct main"
+    description:
+      name: flutter_staggered_grid
+      sha256: bef6c0ff8b8e12be7ed4a193b6fe51e8c545d956a48a5b7653d7b149728c9f42
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter

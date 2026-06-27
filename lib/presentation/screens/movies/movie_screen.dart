@@ -3,6 +3,7 @@ import 'package:cinema_app/domain/entities/movies.dart';
 import 'package:cinema_app/presentation/providers/movies/movie_info_provider.dart';
 import 'package:cinema_app/presentation/providers/providers.dart';
 import 'package:cinema_app/presentation/providers/storage/favorite_movies_provider.dart';
+import 'package:cinema_app/presentation/providers/storage/is_favorite_movie_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -68,6 +69,7 @@ class _CustomSliverAppBar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     final size = MediaQuery.of(context).size;
+    final isFavoriteMovie = ref.watch(isFavoriteMovieProvider(movie.id));
 
     return SliverAppBar(
       backgroundColor: Colors.black,

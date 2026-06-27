@@ -25,5 +25,7 @@ class StorageMoviesNotifier extends StateNotifier<Map<int, Movie>>{
       state = {...state};
       return;
     }
+
+    state = {...state, movie.id: movie};
   }
 }

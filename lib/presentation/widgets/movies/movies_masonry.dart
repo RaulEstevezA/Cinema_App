@@ -18,6 +18,7 @@ class _MoviesMasonryState extends State<MoviesMasonry> {
 
   bool siLastPage = false;
   bool isLoading = false;
+  final scrollController = ScrollController();
 
   @override
   void initState() {
@@ -29,6 +30,7 @@ class _MoviesMasonryState extends State<MoviesMasonry> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: MasonryGridView.count(
+        controller: scrollController,
         crossAxisCount: 3,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,

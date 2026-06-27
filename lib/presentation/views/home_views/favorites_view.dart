@@ -1,3 +1,4 @@
+import 'package:cinema_app/presentation/providers/storage/favorite_movies_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,17 +13,25 @@ class _FavoritesViewState extends ConsumerState<FavoritesView> {
 
   @override
   void initState() {
+    ref.read(favoriteMoviesProvider.notifier).loadNextpage();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
 
+    final favoriteMovies = ref.watch(favoriteMoviesProvider);
+    final myMovieList = favoriteMovies.values.toList();
+
     return Scaffold(
       body: ListView.builder(
-        itemCount: 10,
+        itemCount: favoriteMovies.keys.length,
         itemBuilder: (BuildContext context, int index){
-          return ListTile(title: Text('moviename'),);
+          final movie = myMovieList[index];
+
+
+
+          return ListTile(title: Text(movie.title),);
         }
       )
     );

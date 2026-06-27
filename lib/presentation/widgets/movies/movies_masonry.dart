@@ -24,13 +24,32 @@ class _MoviesMasonryState extends State<MoviesMasonry> {
   void initState() {
     super.initState();
 
-    scrollController.addListener((){
-      // if(widget.loadNextPage == null) return;
-
-      if(scrollController.position.pixels +200 >= scrollController.position.maxScrollExtent) {
-        loadNextPageMovies();
-      }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollController.addListener(_onScroll);
+      _checkAndLoadMore();
     });
+  }
+
+  @override
+  void didUpdateWidget(MoviesMasonry oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.movies.length != widget.movies.length) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _checkAndLoadMore());
+    }
+  }
+
+  void _onScroll() {
+    if (scrollController.position.pixels + 200 >=
+        scrollController.position.maxScrollExtent) {
+      loadNextPageMovies();
+    }
+  }
+
+  void _checkAndLoadMore() {
+    if (!scrollController.hasClients) return;
+    if (scrollController.position.maxScrollExtent <= 0) {
+      loadNextPageMovies();
+    }
   }
 
   @override
@@ -54,26 +73,33 @@ class _MoviesMasonryState extends State<MoviesMasonry> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: MasonryGridView.count(
-        controller: scrollController,
-        crossAxisCount: 3,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-        itemCount: widget.movies.length,
-        itemBuilder:(context, index) {
-          if (index == 1){
-            return Column(
-              children: [
-                const SizedBox(height: 40),
-                MoviePosterLink(movie: widget.movies[index])
-              ],
-            );
-          }
-          return MoviePosterLink(movie: widget.movies[index]);
-        },
+    return CustomScrollView(
+      controller: scrollController,
+      slivers: [
+        const SliverToBoxAdapter(
+          child: SizedBox(height: 60),
         ),
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          sliver: SliverMasonryGrid.count(
+            crossAxisCount: 3,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            childCount: widget.movies.length,
+            itemBuilder: (context, index) {
+              if (index == 1) {
+                return Column(
+                  children: [
+                    const SizedBox(height: 40),
+                    MoviePosterLink(movie: widget.movies[index]),
+                  ],
+                );
+              }
+              return MoviePosterLink(movie: widget.movies[index]);
+            },
+          ),
+        ),
+      ],
     );
   }
 }

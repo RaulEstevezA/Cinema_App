@@ -1,4 +1,3 @@
-import 'package:cinema_app/config/database/favorite_database.dart';
 import 'package:cinema_app/config/router/app_router.dart';
 import 'package:cinema_app/config/theme/app_theme.dart';
 import 'package:flutter/material.dart';

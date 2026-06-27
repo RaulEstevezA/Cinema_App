@@ -1,14 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class FavoritesView extends StatelessWidget {
+class FavoritesView extends ConsumerStatefulWidget {
   const FavoritesView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Favorites View"),),
+  ConsumerState<FavoritesView> createState() => _FavoritesViewState();
+}
 
-      body: Center(child: const Text('Favoritos'),),
+class _FavoritesViewState extends ConsumerState<FavoritesView> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (BuildContext context, int index){
+          return ListTile(title: Text('moviename'),);
+        }
+      )
     );
   }
 }

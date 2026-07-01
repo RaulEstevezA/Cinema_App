@@ -11,5 +11,5 @@ final genresRepositoryProvider = Provider<GenreRepositoryImp>((ref) {
 
 final genresProvider = FutureProvider<List<Genres>>((ref) {
   final genresRepository = ref.watch(genresRepositoryProvider);
-  return genresRepository.getGenre('');
+  return genresRepository.getGenre();
 });

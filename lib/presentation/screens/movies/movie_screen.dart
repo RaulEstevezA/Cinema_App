@@ -88,7 +88,7 @@ class _CustomSliverAppBar extends ConsumerWidget {
             data: (isFavorite) => isFavorite
               ? const Icon(Icons.favorite, color: Colors.red,)
               : const Icon(Icons.favorite_border_outlined),
-            error: (_, __) => const Icon(Icons.error_outline),
+            error: (_, _) => const Icon(Icons.error_outline),
             loading: () => const SizedBox(
               width: 24,
               height: 24,

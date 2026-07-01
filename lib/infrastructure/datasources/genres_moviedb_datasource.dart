@@ -17,7 +17,7 @@ class AllGenresDatasource extends GenresDatasource{
   
   
   @override
-  Future<List<Genres>> getGenre(String allGenre) async {
+  Future<List<Genres>> getGenre() async {
     final response = await dio.get(
       '/genre/movie/list',
     );

@@ -10,8 +10,8 @@ class GenreRepositoryImp extends GenresRepositorires {
   GenreRepositoryImp({required this.datasource});
   
   @override
-  Future<List<Genres>> getGenre(String allGenre) {
-    return datasource.getGenre(allGenre);
+  Future<List<Genres>> getGenre() {
+    return datasource.getGenre();
   }
 
   

@@ -1,9 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cinema_app/domain/entities/movies.dart';
-import 'package:cinema_app/presentation/providers/movies/movie_info_provider.dart';
 import 'package:cinema_app/presentation/providers/providers.dart';
-import 'package:cinema_app/presentation/providers/storage/favorite_movies_provider.dart';
-import 'package:cinema_app/presentation/providers/storage/is_favorite_movie_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -81,7 +78,7 @@ class _CustomSliverAppBar extends ConsumerWidget {
           onPressed: isFavoriteMovie.isLoading ? null : () async {
             await ref.read(favoriteMoviesProvider.notifier).toggleFavoriteMovies(movie);
 
-            await ref.refresh(isFavoriteMovieProvider(movie.id).future);
+            ref.invalidate(isFavoriteMovieProvider(movie.id));
           }, 
           
           icon: isFavoriteMovie.when(
@@ -250,7 +247,7 @@ class _MovieDetails extends StatelessWidget {
 
         _ActorsByMovie(movieId: movie.id.toString()),
 
-        const SizedBox(height: 50,),
+        // const SizedBox(height: 20,),
       ],
     );
   }

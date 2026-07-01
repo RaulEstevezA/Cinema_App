@@ -1,9 +1,10 @@
 import 'dart:async';
-
 import 'package:animate_do/animate_do.dart';
-import 'package:cinema_app/config/helpers/human_formats.dart';
 import 'package:cinema_app/domain/entities/movies.dart' show Movie;
+import 'package:cinema_app/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+// import 'package:cinema_app/config/helpers/human_formats.dart';
+
 
 typedef SearchMoviesCallback = Future<List<Movie>> Function (String query);
 
@@ -110,7 +111,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
         return ListView.builder(
           itemCount: movies.length,
-          itemBuilder: (context, index) => _MovieItem(
+          itemBuilder: (context, index) => MovieVerticalListview(
             movie: movies[index],
             onMovieSelected: (context, movie){
               clearStreams();
@@ -123,6 +124,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   }
 }
 
+/** 
 class _MovieItem extends StatelessWidget {
 
   final Movie movie;
@@ -192,4 +194,4 @@ class _MovieItem extends StatelessWidget {
     );
   }
 }
-
+*/
